@@ -22,9 +22,13 @@ module.exports = {
 
   // create a new user
   createUser(req, res) {
+    console.log(req.body);
     User.create(req.body)
       .then((user) => res.json(user))
-      .catch((err) => res.status(500).json(err));
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err)
+      });
   },
 
   // Update user
@@ -38,7 +42,7 @@ module.exports = {
     .catch((err) => res.status(500).json(err));
   },
 
-  // Delete a user and associated apps
+  // Delete a user and associated thought
   deleteUser(req, res) {
     User.findOneAndDelete({ _id: req.params.userId })
       .then((user) =>
@@ -46,7 +50,7 @@ module.exports = {
           ? res.status(404).json({ message: "No user with that ID" })
           : Thought.deleteMany({ _id: { $in: user.Thought } })
       )
-      .then(() => res.json({ message: "User and associated apps deleted!" }))
+      .then(() => res.json({ message: "User and associated thoughts deleted!" }))
       .catch((err) => res.status(500).json(err));
   },
 
