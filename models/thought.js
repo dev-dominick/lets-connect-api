@@ -1,11 +1,6 @@
 const { Schema, model, Types } = require("mongoose");
+const reactionSchema = require('./reaction');
 
-
-
-// Date???????
-
-
-const reactionSchema = require('./reaction')
 // thought schema
 const thoughtSchema = new Schema(
   {
@@ -17,7 +12,6 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (createdValidate) => dateFormat(createdValidate),
     },
     username: {
       type: String,
