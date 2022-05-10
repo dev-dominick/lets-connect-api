@@ -79,32 +79,32 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // // TODO: Add comments to the functionality of the addTag method
-  // addTag(req, res) {
-  //   Thought.findOneAndUpdate(
-  //     { _id: req.params.ThoughtId },
-  //     { $addToSet: { tags: req.body } },
-  //     { runValidators: true, new: true }
-  //   )
-  //     .then((Thought) =>
-  //       !Thought
-  //         ? res.status(404).json({ message: "No Thought with this id!" })
-  //         : res.json(Thought)
-  //     )
-  //     .catch((err) => res.status(500).json(err));
-  // },
-  // // TODO: Add comments to the functionality of the addTag method
-  // removeTag(req, res) {
-  //   Thought.findOneAndUpdate(
-  //     { _id: req.params.ThoughtId },
-  //     { $pull: { tags: { tagId: req.params.tagId } } },
-  //     { runValidators: true, new: true }
-  //   )
-  //     .then((Thought) =>
-  //       !Thought
-  //         ? res.status(404).json({ message: "No Thought with this id!" })
-  //         : res.json(Thought)
-  //     )
-  //     .catch((err) => res.status(500).json(err));
-  // },
+
+  addReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.ThoughtId },
+      { $addToSet: { tags: req.body } },
+      { runValidators: true, new: true }
+    )
+      .then((Thought) =>
+        !Thought
+          ? res.status(404).json({ message: "No reaction with this id!" })
+          : res.json(Thought)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+
+  deleteReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.ThoughtId },
+      { $pull: { reactions: { reactionId: req.params.reactionId } } },
+      { runValidators: true, new: true }
+    )
+      .then((Thought) =>
+        !Thought
+          ? res.status(404).json({ message: "No reaction with this id!" })
+          : res.json(Thought)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
 };
