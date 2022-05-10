@@ -22,19 +22,21 @@ const thoughtSchema = new Schema(
   },
   {
     toJSON: {
+      virtuals: true,
       getters: true,
     },
     id: false,
   }
 );
 
-// create model of Thought
-const Thought = model("Thought", thoughtSchema);
-
 // need to create a virtual to count # of reactions
 thoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
+
+// create model of Thought
+const Thought = model("Thought", thoughtSchema);
+
 
 // exporting Thought model
 module.exports = Thought;

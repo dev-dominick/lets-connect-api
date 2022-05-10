@@ -57,7 +57,11 @@ module.exports = {
       { $addToSet: { friends: req.params.friendId } },
       { new: true }
     )
-      .then((data) => res.json(data, { message: "friend added" }))
+      .then((data) =>
+      !User
+      ? res.status(404).json({ message: "friend added" })
+      : res.json(data)
+      )
       .catch((err) => res.status(500).json(err));
   },
 
@@ -68,7 +72,11 @@ module.exports = {
       { $pull: { friends: req.params.friendId } },
       { new: true }
     )
-      .then((data) => res.json(data, { message: "friend deleted" }))
+      .then((data) =>
+        !User
+          ? res.status(404).json({ message: "friend deleted" })
+          : res.json(data)
+      )
       .catch((err) => res.status(500).json(err));
   },
 };
