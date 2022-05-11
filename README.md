@@ -9,7 +9,6 @@ This project is a backend app for a social media api.  Within the app a user can
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Credits](#credits)
 - [License](#license)
 
 ## Installation
