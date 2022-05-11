@@ -22,9 +22,10 @@ module.exports = {
   createThought(req, res) {
     Thought.create(req.body)
       .then((Thought) => {
+        console.log(Thought);
         return User.findOneAndUpdate(
           { _id: req.body.userId },
-          { $addToSet: { Thoughts: Thought._id } },
+          { $addToSet: { thoughts: Thought } },
           { new: true }
         );
       })
@@ -33,7 +34,7 @@ module.exports = {
           ? res.status(404).json({
               message: "Thought created, but found no user with that ID",
             })
-          : res.json("Created the Thought 🎉")
+          : res.json("Created the Thought")
       )
       .catch((err) => {
         console.log(err);
@@ -83,7 +84,7 @@ module.exports = {
   addReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.ThoughtId },
-      { $addToSet: { tags: req.body } },
+      { $addToSet: { reactions: req.body } },
       { runValidators: true, new: true }
     )
       .then((Thought) =>
@@ -97,7 +98,7 @@ module.exports = {
   deleteReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.ThoughtId },
-      { $pull: { reactions: { reactionId: req.params.reactionId } } },
+      { $pull: { reactions: { reactionsId: req.params.reactionsId } } },
       { runValidators: true, new: true }
     )
       .then((Thought) =>
