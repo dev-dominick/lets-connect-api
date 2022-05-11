@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is a backend for a social media api.
+This project is a backend app for a social media api.  Within the app a user can create a profile, update a profile, add thoughts to their accounts, add friends, and add reactions to their friends thoughts.
 
 ## Table of Contents (Optional)
 
@@ -18,14 +18,8 @@ Clone repo from my github, run server in the terminal to test the routes.
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
-
+Here is a video demonstration of my app in insomnia:
+https://watch.screencastify.com/v/oEoDfvKYfBOQ1mempRNd
 
 
 ## License
