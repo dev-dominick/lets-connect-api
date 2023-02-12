@@ -8,6 +8,8 @@ module.exports = {
       .then((Thoughts) => res.json(Thoughts))
       .catch((err) => res.status(500).json(err));
   },
+
+
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.ThoughtId })
       .then((Thought) =>
@@ -32,8 +34,8 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({
-              message: "Thought created, but found no user with that ID",
-            })
+            message: "Thought created, but found no user with that ID",
+          })
           : res.json("Created the Thought")
       )
       .catch((err) => {
@@ -41,6 +43,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
+  
   // update thought
   updateThought(req, res) {
     Thought.findOneAndUpdate(
@@ -66,16 +69,16 @@ module.exports = {
         !Thought
           ? res.status(404).json({ message: "No Thought with this id!" })
           : User.findOneAndUpdate(
-              { Thoughts: req.params.ThoughtId },
-              { $pull: { Thoughts: req.params.ThoughtId } },
-              { new: true }
-            )
+            { Thoughts: req.params.ThoughtId },
+            { $pull: { Thoughts: req.params.ThoughtId } },
+            { new: true }
+          )
       )
       .then((user) =>
         !user
           ? res.status(404).json({
-              message: "Thought created but no user with this id!",
-            })
+            message: "Thought created but no user with this id!",
+          })
           : res.json({ message: "Thought successfully deleted!" })
       )
       .catch((err) => res.status(500).json(err));
